@@ -226,7 +226,16 @@ curl -I -m 8 https://www.google.com || true
 
 - 开启代理：`proxy_on`（静默：`proxy_on true`）；关闭：`proxy_off`。
 - 自动跟随端口：`autoproxy_maybe`。
+- **注意**，在VSCode远程连接终端上执行proxy_on命令默认会将7890自动转发，导致远程服务器关机以后本机代理挂了，请在settings.json中添加以下内容：
 
+```json
+{
+  "remote.autoForwardPorts": false,
+  "remote.portsAttributes": {
+    "7890": { "onAutoForward": "ignore", "label": "keep-local-proxy" }
+  }
+}
+```
 ---
 
 ## 常见问题与排查
